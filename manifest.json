@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "OGS to AI Sensei",
+  "version": "1.0.0",
+  "description": "Send an OGS game to AI Sensei for review in one click.",
+  "author": "Gary",
+  "homepage_url": "https://github.com/gary/ogs-to-aisensei-plugin",
+
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+
+  "permissions": [
+    "storage",
+    "*://online-go.com/*",
+    "*://ai-sensei.com/*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://online-go.com/game/*"],
+      "js": ["content_scripts/ogs.js"],
+      "css": ["content_scripts/ogs.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://ai-sensei.com/add-game*"],
+      "js": ["content_scripts/aisensei.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

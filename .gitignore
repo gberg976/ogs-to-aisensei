@@ -1,0 +1,13 @@
+# Extension package
+*.zip
+
+# Icon generation script (build artifact helper, not part of the extension)
+make_icons.py
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
