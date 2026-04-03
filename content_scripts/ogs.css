@@ -1,17 +1,5 @@
 #aisensei-btn {
-  background: #4a90d9;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 13px;
-  cursor: pointer;
-  margin-left: 8px;
   white-space: nowrap;
-}
-
-#aisensei-btn:hover {
-  background: #357abd;
 }
 
 #aisensei-btn.aisensei-floating {
@@ -20,6 +8,4 @@
   right: 20px;
   z-index: 9999;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  padding: 10px 16px;
-  font-size: 14px;
 }

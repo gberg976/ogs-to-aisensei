@@ -3,7 +3,7 @@
   "name": "OGS to AI Sensei",
   "version": "1.0.0",
   "description": "Send an OGS game to AI Sensei for review in one click.",
-  "author": "Gary",
+  "author": "gary berg",
   "homepage_url": "https://github.com/gary/ogs-to-aisensei-plugin",
 
   "icons": {

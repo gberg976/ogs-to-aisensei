@@ -9,20 +9,35 @@ function addButton() {
   const gameId = getGameId();
   if (!gameId) return;
 
-  const btn = document.createElement("button");
+  const btn = document.createElement("a");
   btn.id = "aisensei-btn";
+  btn.href = "#";
   btn.textContent = "Review on AI Sensei";
   btn.title = "Open this game in AI Sensei for review";
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", (ev) => {
+    ev.preventDefault();
     const ogsUrl = `https://online-go.com/game/${gameId}`;
     browser.runtime.sendMessage({ type: "open-aisensei", ogsUrl });
   });
 
-  // OGS renders its controls dynamically; try a few candidate anchor points.
+  // Preferred: insert after the "Add to library" link in the Dock panel.
+  const dock = document.querySelector(".Dock");
+  if (dock) {
+    const libraryLink = Array.from(dock.querySelectorAll("a")).find(
+      (a) => a.querySelector(".fa-plus") && a.textContent.includes("library")
+    );
+    if (libraryLink) {
+      libraryLink.insertAdjacentElement("afterend", btn);
+    } else {
+      dock.appendChild(btn);
+    }
+    return;
+  }
+
+  // Fallback: other candidate anchor points.
   const anchors = [
-    ".action-bar",
     ".game-action-buttons",
-    ".chat-input-container",
+    ".action-bar",
     "#game-nav-details",
     ".NavBar",
   ];
