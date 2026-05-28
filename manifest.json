@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "OGS to AI Sensei",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send an OGS game to AI Sensei for review in one click.",
   "author": "gary berg",
   "homepage_url": "https://github.com/gberg976/ogs-to-aisensei",
@@ -35,7 +35,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://online-go.com/game/*"],
+      "matches": ["*://online-go.com/*"],
       "js": ["content_scripts/ogs.js"],
       "css": ["content_scripts/ogs.css"],
       "run_at": "document_idle"

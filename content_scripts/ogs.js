@@ -4,19 +4,32 @@ function getGameId() {
 }
 
 function addButton() {
-  if (document.getElementById("aisensei-btn")) return;
-
   const gameId = getGameId();
-  if (!gameId) return;
+  const existing = document.getElementById("aisensei-btn");
+
+  if (!gameId) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  if (existing) {
+    if (existing.dataset.gameId !== gameId) {
+      existing.dataset.gameId = gameId;
+    }
+    return;
+  }
 
   const btn = document.createElement("a");
   btn.id = "aisensei-btn";
   btn.href = "#";
   btn.textContent = "Review on AI Sensei";
   btn.title = "Open this game in AI Sensei for review";
+  btn.dataset.gameId = gameId;
   btn.addEventListener("click", (ev) => {
     ev.preventDefault();
-    const ogsUrl = `https://online-go.com/game/${gameId}`;
+    const id = btn.dataset.gameId || getGameId();
+    if (!id) return;
+    const ogsUrl = `https://online-go.com/game/${id}`;
     browser.runtime.sendMessage({ type: "open-aisensei", ogsUrl });
   });
 
@@ -55,7 +68,18 @@ function addButton() {
   document.body.appendChild(btn);
 }
 
-// OGS is a SPA — watch for the game UI to appear.
+// OGS is a SPA — watch for the game UI to appear and for client-side
+// navigation between pages.
 const observer = new MutationObserver(addButton);
 observer.observe(document.body, { childList: true, subtree: true });
+
+let lastPath = location.pathname;
+setInterval(() => {
+  if (location.pathname !== lastPath) {
+    lastPath = location.pathname;
+    addButton();
+  }
+}, 500);
+
+window.addEventListener("popstate", addButton);
 addButton();
