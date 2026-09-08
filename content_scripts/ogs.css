@@ -1,5 +1,30 @@
 #aisensei-btn {
+  display: block;
   white-space: nowrap;
+  margin: 0.5em 0;
+  padding: 0.5em 0.75em;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #f0f0f0;
+  color: #333;
+}
+
+#aisensei-btn:hover {
+  background: #e0e0e0;
+}
+
+[data-theme="dark"] #aisensei-btn,
+[data-theme="accessible"] #aisensei-btn {
+  border-color: #555;
+  background: #2a2a2a;
+  color: #ddd;
+}
+
+[data-theme="dark"] #aisensei-btn:hover,
+[data-theme="accessible"] #aisensei-btn:hover {
+  background: #3a3a3a;
 }
 
 #aisensei-btn.aisensei-floating {

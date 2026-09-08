@@ -1,7 +1,7 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "OGS to AI Sensei",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Send an OGS game to AI Sensei for review in one click.",
   "author": "gary berg",
   "homepage_url": "https://github.com/gberg976/ogs-to-aisensei",

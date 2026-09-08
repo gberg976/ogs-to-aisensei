@@ -33,24 +33,22 @@ function addButton() {
     browser.runtime.sendMessage({ type: "open-aisensei", ogsUrl });
   });
 
-  // Preferred: insert after the "Add to library" link in the Dock panel.
-  const dock = document.querySelector(".Dock");
-  if (dock) {
-    const libraryLink = Array.from(dock.querySelectorAll("a")).find(
-      (a) => a.querySelector(".fa-plus") && a.textContent.includes("library")
-    );
-    if (libraryLink) {
-      libraryLink.insertAdjacentElement("afterend", btn);
+  // Preferred: insert into the game sidebar, after the game-info block.
+  const sidebar = document.querySelector(".GobanView-sidebar-content");
+  if (sidebar) {
+    const infoBlock = sidebar.querySelector(".condensed-game-information");
+    if (infoBlock) {
+      infoBlock.insertAdjacentElement("afterend", btn);
     } else {
-      dock.appendChild(btn);
+      sidebar.appendChild(btn);
     }
     return;
   }
 
   // Fallback: other candidate anchor points.
   const anchors = [
-    ".game-action-buttons",
-    ".action-bar",
+    ".GobanView-sidebar",
+    ".GobanView-tab-bar-right",
     "#game-nav-details",
     ".NavBar",
   ];
